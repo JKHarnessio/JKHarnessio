@@ -1,0 +1,47 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: harness_onboard_project_payment_service
+  title: Onboard new Project with Payment Service
+  description: Use this Workflow to create a new Project and provide the final Lab result of the Payment Service Hands On Workshop. (You might have to add Secrets in order to successfully run SBOM steps)
+  tags:
+    - paymentservice
+    - handsonworkshop
+spec:
+  owner: julian-maurice.klodzinski@harness.io
+  type: service
+  parameters:
+    - title: Project Details
+      required:
+        - project_name
+        - seusername
+      properties:
+        project_name:
+          title: Provide your Project Name
+          description: Provide a lower case alphabethical project name. Do not use numbers or special characters. The Provisioning Pipeline will fail if you try it.
+          pattern: ^[a-z]+$
+          type: string
+        seusername:
+          title: Provide your Username
+          description: This is the seusername from the workshop. Only use lower case alphabethical characters. Do not use numbers or special characters. The Provisioning Pipeline will fail if you try it.
+          type: string
+        # This field is hidden but needed to authenticate the request to trigger the pipeline
+        token:
+          title: Harness Token
+          type: string
+          ui:widget: password
+          ui:field: HarnessAuthToken
+  steps:
+    - id: trigger
+      name: Provisioning your Workshop Project
+      action: trigger:harness-custom-pipeline
+      input:
+        url: https://app.harness.io/gateway/pipeline/api/webhook/custom/v2?accountIdentifier=IFG41DWvSnaRLOVNB2uesg&orgIdentifier=dzbankworkshop282org&projectIdentifier=jkharnessio&pipelineIdentifier=Simple_Project_Onboarding&triggerIdentifier=IDP_Trigger
+        inputset:
+          project_name: ${{ parameters.project_name }}
+          seusername: ${{ parameters.seusername }}
+        apikey: ${{ parameters.token }}
+  output:
+    links:
+      - title: Pipeline Details
+        url: ${{ steps.trigger.output.PipelineUrl }}
