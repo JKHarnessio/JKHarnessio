@@ -3,7 +3,7 @@ kind: Template
 metadata:
   name: workshop_payment_service_onboarding
   title: Onboard new Project with Payment Service
-  description: Use this Workflow to create a new Project and provide the final Lab result of the Payment Service Hands On Workshop. (You might have to add Secrets in order to successfully run SBOM steps)
+  description: This Self Service Workflow can create the final Workshop Project. This is right now limited to the Org where the Provisioning Pipeline is located. For SBOM Secrets are requried at the Org Level.
   tags:
     - paymentservice
     - handsonworkshop
