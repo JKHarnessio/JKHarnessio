@@ -1,7 +1,7 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: harness_onboard_project_payment_service
+  name: workshop_payment_service_onboarding
   title: Onboard new Project with Payment Service
   description: Use this Workflow to create a new Project and provide the final Lab result of the Payment Service Hands On Workshop. (You might have to add Secrets in order to successfully run SBOM steps)
   tags:
