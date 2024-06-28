@@ -38,8 +38,8 @@ spec:
       input:
         url: https://app.harness.io/gateway/pipeline/api/webhook/custom/v2?accountIdentifier=IFG41DWvSnaRLOVNB2uesg&orgIdentifier=dzbankworkshop282org&projectIdentifier=jkharnessio&pipelineIdentifier=Simple_Project_Onboarding&triggerIdentifier=IDP_Trigger
         inputset:
-          project_name: ${{ parameters.project_name }}
-          seusername: ${{ parameters.seusername }}
+          projectname: ${{ parameters.project_name }}
+          username: ${{ parameters.seusername }}
         apikey: ${{ parameters.token }}
   output:
     links:
